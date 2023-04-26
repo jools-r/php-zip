@@ -224,8 +224,8 @@ class Zip {
 		// using zipArchive class
 		if($this->lib === 1) {
 			$names = $this->commonPath($this->org_files, true);
-			$lib = new ZipArchive();
-			if(!$lib->open($this->new_file_path,ZIPARCHIVE::CREATE)) throw new \Exception('PHP-ZIP: Permission denied or zlib not found');
+			$lib = new \ZipArchive();
+			if(!$lib->open($this->new_file_path,\ZIPARCHIVE::CREATE)) throw new \Exception('PHP-ZIP: Permission denied or zlib not found');
 
 			$count_before = $lib->numFiles;
 
@@ -377,7 +377,7 @@ class Zip {
 
 		// extract using ZipArchive
 		if($this->lib === 1) {
-			$lib = new ZipArchive;
+			$lib = new \ZipArchive;
 			if(!$lib->open($this->extr_file)) throw new \Exception("PHP-ZIP: Unable to open the zip file");
 			if(!$lib->extractTo($this->extr_dirc)) throw new \Exception("PHP-ZIP: Unable to extract files");
 			$lib->close();
