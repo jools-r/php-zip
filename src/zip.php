@@ -414,11 +414,11 @@ class Zip {
 	 * -------------------------------------------------------------------------
 	**/
 
-	private function dir_to_assoc_arr(DirectoryIterator $dir) {
+	private function dir_to_assoc_arr(\DirectoryIterator $dir) {
 		$data = array();
 		foreach ($dir as $node) {
 			if ( $node->isDir() && !$node->isDot() ) {
-				$data[$node->getFilename()] = $this->dir_to_assoc_arr(new DirectoryIterator($node->getPathname()));
+				$data[$node->getFilename()] = $this->dir_to_assoc_arr(new \DirectoryIterator($node->getPathname()));
 			} else if( $node->isFile() ) {
 				$data[] = $node->getFilename();
 			}
@@ -452,7 +452,7 @@ class Zip {
 	**/
 
 	private function push_whole_dir($dir){
-		$dir_array = $this->dir_to_assoc_arr(new DirectoryIterator($dir));
+		$dir_array = $this->dir_to_assoc_arr(new \DirectoryIterator($dir));
 		foreach($dir_array as $key => $value) {
 			if(!is_array($value)) array_push($this->org_files,$this->path($dir,$value));
 			else {
